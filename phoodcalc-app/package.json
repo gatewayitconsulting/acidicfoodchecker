@@ -5,10 +5,15 @@
     "ng": "ng",
     "start": "ng serve",
     "start-browser": "ng serve --open",
-    "build": "ng build",
+    "build": "ng build --prod",
+    "build:stats": "ng build --stats-json",
+    "analyze-stats": "webpack-bundle-analyzer src/stats.json",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "install-ang": "npm install -g @angular/cli",
+    "install-npm": "npm install",
+    "first-build": "install-ang & install-npm & start-browser"
   },
   "private": true,
   "dependencies": {
