@@ -1,4 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 1em; }
+h1 { font-size: 2.5em; }
+// h2 { font-weight: $light; }
+// h4 { font-weight: $bold; }
+p { font-size: 1.6em; }
+a { font-size: 1.4em; }
+.badge { font-size: 1.1em; }
+
+// Borders
+// $default-border: 1px solid $black;
+// $white-border: 1px solid $border-white;
+// $primary-blue-border: 1px solid $primary-blue;
+
+// Banner Sizes
+$banner-size: 400px;
+$slider-size: 400px;
+
+.banner {
+    height: $banner-size;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: -10px 16px 400px 80px rgba(0,0,0,0.73) inset;
+    -webkit-box-shadow: -10px 16px 400px 80px rgba(0,0,0,0.73) inset;
+    -moz-box-shadow: -10px 16px 400px 80px rgba(0,0,0,0.73) inset;
+}
+
+.heading {
+    h1 {
+        margin-top: 3.25em;
+        color: white;
+        font-size: 3rem;
+    }
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+// @media only screen and (min-width: $media-query-extra-small) {
+//     .heading {
+//         h1 {
+//             font-size: 3.3125rem;
+//         }
+//     }
+// }
