@@ -5,11 +5,12 @@ import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
 
 
-export interface UserData {
+export interface ItemData {
   id: string;
   name: string;
   pHLevel: string;
   calories: string;
+  totalFat: string;
   protein: string;
   totalCarbohydrate: string;
 }
@@ -31,9 +32,9 @@ const NAMES: string[] = [
   styleUrls: ['./food-list.component.scss']
 })
 export class FoodListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['select', 'id', 'name', 'pHLevel', 'calories', 'protein', 'totalCarbohydrate'];
-  dataSource: MatTableDataSource<UserData>;
-  selection = new SelectionModel<UserData>(true, []);
+  displayedColumns: string[] = ['select', 'id', 'name', 'pHLevel', 'calories', 'totalFat', 'protein', 'totalCarbohydrate'];
+  dataSource: MatTableDataSource<ItemData>;
+  selection = new SelectionModel<ItemData>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -61,6 +62,13 @@ export class FoodListComponent implements AfterViewInit {
     }
   }
 
+  // isSelected() {
+  //   if (this.selection.selected) {
+  //     const totalPH =+ PHLEVELS[];
+  //     console.log(totalPH);
+  //   }
+  // }
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -76,7 +84,7 @@ export class FoodListComponent implements AfterViewInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: UserData): string {
+  checkboxLabel(row?: ItemData): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -85,7 +93,7 @@ export class FoodListComponent implements AfterViewInit {
 }
 
 /** Builds and returns a new item. */
-function createNewItem(id: number): UserData {
+function createNewItem(id: number): ItemData {
   const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))];
 
   return {
@@ -93,6 +101,7 @@ function createNewItem(id: number): UserData {
     name: name,
     pHLevel: PHLEVELS[Math.round(Math.random() * (PHLEVELS.length - 1))],
     calories: Math.round(Math.random() * 20).toString(),
+    totalFat: '',
     protein: '',
     totalCarbohydrate: ''
   };

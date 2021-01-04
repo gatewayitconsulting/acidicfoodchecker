@@ -33,7 +33,7 @@
     <!-- Progress Column -->
     <ng-container matColumnDef="pHLevel">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> pH Level </th>
-      <td mat-cell *matCellDef="let row"> {{row.pHLevel}}% </td>
+      <td mat-cell *matCellDef="let row"> {{row.pHLevel}} </td>
     </ng-container>
 
     <!-- Name Column -->
@@ -48,6 +48,12 @@
       <td mat-cell *matCellDef="let row" [style.calories]="row.calories"> {{row.calories}} </td>
     </ng-container>
 
+    <!-- Total Fat Column -->
+    <ng-container matColumnDef="totalFat">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Fat </th>
+      <td mat-cell *matCellDef="let row" [style.totalFat]="row.totalFat"> {{row.totalFat}} </td>
+    </ng-container>
+    
     <!-- Protein Column -->
     <ng-container matColumnDef="protein">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Protein </th>
