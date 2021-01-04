@@ -2,6 +2,8 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {SelectionModel} from '@angular/cdk/collections';
+
 
 export interface UserData {
   id: string;
@@ -29,9 +31,9 @@ const NAMES: string[] = [
   styleUrls: ['./food-list.component.scss']
 })
 export class FoodListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'pHLevel', 'calories', 'protein', 'totalCarbohydrate'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'pHLevel', 'calories', 'protein', 'totalCarbohydrate'];
   dataSource: MatTableDataSource<UserData>;
-  
+  selection = new SelectionModel<UserData>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -57,6 +59,28 @@ export class FoodListComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: UserData): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 }
 
