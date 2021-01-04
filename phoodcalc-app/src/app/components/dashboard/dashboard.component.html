@@ -1,11 +1,23 @@
 <div class="grid-container">
   <h1 class="mat-h1">pHoodcalc Dashboard</h1>
-  <mat-grid-list cols="3" rowHeight="350px">
+  <mat-grid-list cols="3" rowHeight="700px" *ngIf="desktop">
     <mat-grid-tile [colspan]="2" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
-          <mat-card-title>
+          <mat-card-title style="margin-bottom: 1em;">
             Food List
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-food-list></app-food-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title style="margin-bottom: 1em;">
+            pH Level
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
@@ -13,10 +25,24 @@
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="1" rowHeight="750px" *ngIf="responsive">
     <mat-grid-tile [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
-          <mat-card-title>
+          <mat-card-title style="margin-bottom: 1em;">
+            Food List
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-food-list></app-food-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title style="margin-bottom: 1em;">
             pH Level
           </mat-card-title>
         </mat-card-header>
