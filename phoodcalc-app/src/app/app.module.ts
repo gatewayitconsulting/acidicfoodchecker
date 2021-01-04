@@ -18,6 +18,7 @@ import { FoodListComponent } from './components/food-list/food-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { PhLevelCoreComponent } from './components/ph-level-core/ph-level-core.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatSortModule } from '@angular/material/sort';
     PageNotFoundComponent,
     HomeComponent,
     DashboardComponent,
-    FoodListComponent
+    FoodListComponent,
+    PhLevelCoreComponent
   ],
   imports: [
     BrowserModule,
