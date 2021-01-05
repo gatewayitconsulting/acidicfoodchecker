@@ -23,6 +23,8 @@ a { font-size: 1.4em; }
 $banner-size: 400px;
 $slider-size: 400px;
 
+$media-query-responsive: 600px;
+
 .banner {
     height: $banner-size;
     background-position: center;

@@ -3,12 +3,13 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
+import { PHLevel } from 'src/app/mock-data/models/pHLevel';
 
 
 export interface ItemData {
   id: string;
   name: string;
-  pHLevel: string;
+  pHLevel: number;
   calories: string;
   totalFat: string;
   protein: string;
@@ -16,8 +17,8 @@ export interface ItemData {
 }
 
 /** Constants used to fill up our data base. */
-const PHLEVELS: string[] = [
-  '1', '2', '3', '4', '5', '6', '7', '7.4', '1.5'
+const PHLEVELS: number[] = [
+  1, 2, 3, 4, 5, 6, 7, 7.4, 1.5
 ];
 const NAMES: string[] = [
   'Banana', 'Apple', 'Beef Jerky', 'Coffee', 'Bread', 'Salmon', 'Water', 'Almond Milk', 'Popcorn', 'Chobani Yogurt'
@@ -62,12 +63,13 @@ export class FoodListComponent implements AfterViewInit {
     }
   }
 
-  // isSelected() {
-  //   if (this.selection.selected) {
-  //     const totalPH =+ PHLEVELS[];
-  //     console.log(totalPH);
-  //   }
-  // }
+  calculate() {
+    if (this.selection.hasValue()) {
+      const totalPH =+ PHLEVELS[Math.round(Math.random() * (PHLEVELS.length - 1))];
+      console.log("Total PH: " + totalPH);
+    }
+  }
+
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
