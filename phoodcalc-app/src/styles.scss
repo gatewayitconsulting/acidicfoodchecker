@@ -6,22 +6,10 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     font-size: 1em;
     background-image: linear-gradient(to right top, #3c5172, #415276, #46537b, #4c547f, #535582, #5a5585, #615587, #685589, #70558b, #78558c, #81548c, #89548c);
+    background-repeat: initial;
 }
-h1 { font-size: 2.5em; }
-// h2 { font-weight: $light; }
-// h4 { font-weight: $bold; }
-p { font-size: 1.6em; }
-a { font-size: 1.4em; }
-.badge { font-size: 1.1em; }
 
-// Borders
-// $default-border: 1px solid $black;
-// $white-border: 1px solid $border-white;
-// $primary-blue-border: 1px solid $primary-blue;
-
-// Banner Sizes
-$banner-size: 400px;
-$slider-size: 400px;
+$banner-size: 1000px;
 
 $media-query-responsive: 600px;
 
@@ -35,22 +23,6 @@ $media-query-responsive: 600px;
     -moz-box-shadow: -10px 16px 400px 80px rgba(0,0,0,0.73) inset;
 }
 
-.heading {
-    h1 {
-        margin-top: 3.25em;
-        color: white;
-        font-size: 3rem;
-    }
-}
-
 .circle {
     border-radius: 50%;
 }
-
-// @media only screen and (min-width: $media-query-extra-small) {
-//     .heading {
-//         h1 {
-//             font-size: 3.3125rem;
-//         }
-//     }
-// }
