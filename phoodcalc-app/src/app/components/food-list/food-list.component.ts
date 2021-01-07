@@ -50,9 +50,9 @@ export class FoodListComponent implements AfterViewInit {
     this.dataSource = new MatTableDataSource(items);
   }
 
-  ngOnInit() {
-    this.getFoods();
-  }
+  // ngOnInit() {
+  //   this.getFoods();
+  // }
 
   ngAfterViewInit() {
     this.paginator.pageSize = 15;
@@ -60,10 +60,10 @@ export class FoodListComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  getFoods(): void {
-    this.foodService.getFoods()
-    .subscribe(food => this.food = food);
-  }
+  // getFoods(): void {
+  //   this.foodService.getFoods()
+  //   .subscribe(food => this.food = food);
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -76,10 +76,8 @@ export class FoodListComponent implements AfterViewInit {
 
   calculate() {
     if (this.selection.hasValue()) {
-      const totalPH =+ PHLEVELS[Math.round(Math.random() * (PHLEVELS.length - 1))];
-      // const totalAPIPH =+ this.food[id].pHLevel;
+      const totalPH = this.dataSource.data.map(food => food.pHLevel).reduce((acc, value) => acc + value, 0);
       console.log("Total PH: " + totalPH);
-      // console.log("Total API PH: " + totalAPIPH);
     }
   }
 
