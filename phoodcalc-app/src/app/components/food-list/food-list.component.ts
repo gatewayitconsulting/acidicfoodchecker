@@ -76,10 +76,8 @@ export class FoodListComponent implements AfterViewInit {
 
   calculate() {
     if (this.selection.hasValue()) {
-      const totalPH =+ PHLEVELS[Math.round(Math.random() * (PHLEVELS.length - 1))];
-      // const totalAPIPH =+ this.food[id].pHLevel;
+      const totalPH = this.dataSource.data.map(f => f.pHLevel).reduce((acc, value) => acc + value, 0);
       console.log("Total PH: " + totalPH);
-      // console.log("Total API PH: " + totalAPIPH);
     }
   }
 
