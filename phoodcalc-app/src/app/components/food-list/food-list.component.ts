@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {SelectionModel} from '@angular/cdk/collections';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Food } from '../../mock-data/models/food';
 import { FoodService } from '../../mock-data/services/food.service';
 
@@ -42,9 +43,12 @@ export class FoodListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private foodService: FoodService) {
+  constructor(
+      private foodService: FoodService,
+      public dialog: MatDialog
+    ) {
     // Create 100 items
-    const items = Array.from({length: 20}, (_, k) => createNewItem(k + 1));
+    const items = Array.from({length: 5}, (_, k) => createNewItem(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(items);
@@ -74,13 +78,23 @@ export class FoodListComponent implements AfterViewInit {
     }
   }
 
-  calculate() {
-    if (this.selection.hasValue()) {
-      const totalPH = this.dataSource.data.map(food => food.pHLevel).reduce((acc, value) => acc + value, 0);
-      console.log("Total PH: " + totalPH);
-    }
+  addFood() {
+    this.dialog.open(DialogDataExampleDialog, {
+      data: {
+        animal: 'panda'
+      }
+    });
   }
 
+  removeFood() {
+    console.log("Food removed.");
+  }
+
+  calculate() {
+    const pHSum = this.dataSource.data.map(food => food.pHLevel).reduce((acc, value) => acc + value, 0);
+    let pHTotal = pHSum/this.dataSource.data.map(food => food.pHLevel).length;
+    console.log("Total PH: " + pHTotal);
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -118,4 +132,12 @@ function createNewItem(id: number): ItemData {
     protein: Math.round(Math.random() * 20),
     totalCarbohydrate: Math.round(Math.random() * 20)
   };
+}
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'add-food.html'
+})
+export class DialogDataExampleDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) private foodService: FoodService) {}
 }

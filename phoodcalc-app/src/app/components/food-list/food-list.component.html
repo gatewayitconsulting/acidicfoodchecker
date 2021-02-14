@@ -4,9 +4,17 @@
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Banana" #input>
   </mat-form-field>
-  <button mat-raised-button (click)="calculate()" [disabled]="!selection.hasValue()"
+  <button mat-raised-button (click)="removeFood()" color="warn" [disabled]="!selection.hasValue()"
     style="margin-top: 1em; margin-right: 1em; float: right;">
-    Calculate
+    Remove food
+  </button>
+  <button mat-raised-button (click)="addFood()" color="primary"
+    style="margin-top: 1em; margin-right: 1em; float: right;">
+    Add food
+  </button>
+  <button mat-raised-button (click)="calculate()" color="primary"
+    style="margin-top: 1em; margin-right: 1em; float: right;">
+    Calculate Test
   </button>
 </div>
 
